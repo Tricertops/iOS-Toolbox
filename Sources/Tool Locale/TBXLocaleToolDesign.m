@@ -28,13 +28,35 @@
     if (self) {
         
         self->_workingLocale = [NSLocale currentLocale];
-        self->_title = @"Locale";
         
         [[OCAProperty(self, workingLocale, NSLocale) transformValues:
          [OCATransformer objectForKey:NSLocaleCountryCode],
-          nil] connectTo:OCAProperty(self, subtitle, NSString)];
+          nil] connectTo:OCAProperty(self, representation, NSString)];
+        
+        [[OCAProperty(self, workingLocale, NSLocale) transformValues:
+          [OCATransformer branchArray:@[
+                                        [self.class transformLocaleToDisplayNameForKey:NSLocaleLanguageCode],
+                                        [self.class transformLocaleToDisplayNameForKey:NSLocaleCountryCode],
+                                        [self.class transformLocaleToDisplayNameForKey:NSLocaleVariantCode],
+                                        ]],
+          [OCATransformer formatString:@"%@ (%@)"],
+          nil] connectTo:OCAProperty(self, workingLocaleTitle, NSString)];
+        
+        [[OCAProperty(self, workingLocale, NSLocale) transformValues:
+          [OCATransformer objectForKey:NSLocaleIdentifier],
+          nil] connectTo:OCAProperty(self, workingLocaleSubtitle, NSString)];
     }
     return self;
+}
+
+
++ (NSValueTransformer *)transformLocaleToDisplayNameForKey:(NSString *)key {
+    return [OCATransformer fromClass:[NSLocale class] toClass:[NSString class]
+                           asymetric:^NSString *(NSLocale *input) {
+                               
+                               id value = [input objectForKey:key];
+                               return [[NSLocale currentLocale] displayNameForKey:key value:value];
+                           }];
 }
 
 

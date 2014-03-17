@@ -16,10 +16,12 @@
 @interface TBXLocaleToolDesign : NSObject
 
 
-@property (atomic, readwrite, strong) NSLocale *workingLocale;
 
-@property (atomic, readonly, strong) NSString *title;
-@property (atomic, readonly, strong) NSString *subtitle;
+@property (atomic, readonly, strong) NSString *representation;
+
+@property (atomic, readwrite, strong) NSLocale *workingLocale;
+@property (atomic, readonly, strong) NSString *workingLocaleTitle;
+@property (atomic, readonly, strong) NSString *workingLocaleSubtitle;
 
 
 @end

@@ -31,7 +31,7 @@
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = @[
-                                         [[TBXLocaleToolViewController alloc] init],
+                                         [[UINavigationController alloc] initWithRootViewController:[[TBXLocaleToolViewController alloc] init]],
                                          ];
     self.window.rootViewController = tabBarController;
     

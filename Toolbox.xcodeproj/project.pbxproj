@@ -14,6 +14,7 @@
 		5BD297B318D7386000BB957C /* libObjectiveChain-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD297AA18D7384000BB957C /* libObjectiveChain-iOS.a */; };
 		5BD297B718D73A7F00BB957C /* TBXLocaleToolDesign.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD297B618D73A7F00BB957C /* TBXLocaleToolDesign.m */; };
 		5BD297BA18D73B3E00BB957C /* TBXLocaleToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD297B918D73B3E00BB957C /* TBXLocaleToolViewController.m */; };
+		5BD297BD18D744D300BB957C /* TBXCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD297BC18D744D300BB957C /* TBXCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,8 @@
 		5BD297B618D73A7F00BB957C /* TBXLocaleToolDesign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXLocaleToolDesign.m; sourceTree = "<group>"; };
 		5BD297B818D73B3E00BB957C /* TBXLocaleToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXLocaleToolViewController.h; sourceTree = "<group>"; };
 		5BD297B918D73B3E00BB957C /* TBXLocaleToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXLocaleToolViewController.m; sourceTree = "<group>"; };
+		5BD297BB18D744D300BB957C /* TBXCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXCell.h; sourceTree = "<group>"; };
+		5BD297BC18D744D300BB957C /* TBXCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,8 @@
 				5BD2978518D733D500BB957C /* main.m */,
 				5BD2978618D733D500BB957C /* TBXAppDelegate.h */,
 				5BD2978718D733D500BB957C /* TBXAppDelegate.m */,
+				5BD297BB18D744D300BB957C /* TBXCell.h */,
+				5BD297BC18D744D300BB957C /* TBXCell.m */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -331,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BD2978918D733D500BB957C /* main.m in Sources */,
+				5BD297BD18D744D300BB957C /* TBXCell.m in Sources */,
 				5BD297B718D73A7F00BB957C /* TBXLocaleToolDesign.m in Sources */,
 				5BD2978A18D733D500BB957C /* TBXAppDelegate.m in Sources */,
 				5BD297BA18D73B3E00BB957C /* TBXLocaleToolViewController.m in Sources */,
