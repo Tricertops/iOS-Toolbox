@@ -8,6 +8,7 @@
 
 @import Foundation.NSObject;
 @import Foundation.NSLocale;
+#import "TBXLocaleChooserDesign.h"
 
 
 
@@ -16,16 +17,17 @@
 @interface TBXLocaleToolDesign : NSObject
 
 
-
-
 @property (atomic, readwrite, strong) NSLocale *workingLocale;
 
-@property (atomic, readonly, strong) NSString *workingRepresentation;
-@property (atomic, readonly, strong) NSString *workingLocaleTitle;
+@property (atomic, readonly, copy) NSString *workingRepresentation;
+@property (atomic, readonly, copy) NSString *workingLocaleTitle;
 
 @property (atomic, readonly, assign) NSUInteger componentCount;
-@property (atomic, readonly, strong) NSArray *componentTitles;
-@property (atomic, readonly, strong) NSArray *componentValues;
+@property (atomic, readonly, copy) NSArray *componentTitles;
+@property (atomic, readonly, copy) NSArray *componentValues;
+
+
+- (TBXLocaleChooserDesign *)createChooserDesign;
 
 
 @end

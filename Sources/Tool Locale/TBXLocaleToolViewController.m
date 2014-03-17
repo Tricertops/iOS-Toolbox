@@ -8,6 +8,7 @@
 
 #import "TBXLocaleToolViewController.h"
 #import "TBXCell.h"
+#import "TBXLocaleChooserViewController.h"
 
 
 
@@ -141,6 +142,23 @@
         case 1: return [self.componentCells objectAtIndex:indexPath.row];
     }
     return nil;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath && indexPath.section == 0 && indexPath.row == 0) {
+        [self presentLocaleChooser];
+    }
+    else {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+}
+
+
+- (void)presentLocaleChooser {
+    TBXLocaleChooserDesign *chooserDesign = [self.design createChooserDesign];
+    TBXLocaleChooserViewController *localeChooser = [[TBXLocaleChooserViewController alloc] initWithDesign:chooserDesign];
+    [self.navigationController pushViewController:localeChooser animated:YES];
 }
 
 

@@ -15,6 +15,8 @@
 		5BD297B718D73A7F00BB957C /* TBXLocaleToolDesign.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD297B618D73A7F00BB957C /* TBXLocaleToolDesign.m */; };
 		5BD297BA18D73B3E00BB957C /* TBXLocaleToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD297B918D73B3E00BB957C /* TBXLocaleToolViewController.m */; };
 		5BD297BD18D744D300BB957C /* TBXCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD297BC18D744D300BB957C /* TBXCell.m */; };
+		5BD297C418D76AE200BB957C /* TBXLocaleChooserDesign.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD297C318D76AE200BB957C /* TBXLocaleChooserDesign.m */; };
+		5BD297C718D774B700BB957C /* TBXLocaleChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD297C618D774B700BB957C /* TBXLocaleChooserViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,10 @@
 		5BD297B918D73B3E00BB957C /* TBXLocaleToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXLocaleToolViewController.m; sourceTree = "<group>"; };
 		5BD297BB18D744D300BB957C /* TBXCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXCell.h; sourceTree = "<group>"; };
 		5BD297BC18D744D300BB957C /* TBXCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXCell.m; sourceTree = "<group>"; };
+		5BD297C218D76AE200BB957C /* TBXLocaleChooserDesign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXLocaleChooserDesign.h; sourceTree = "<group>"; };
+		5BD297C318D76AE200BB957C /* TBXLocaleChooserDesign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXLocaleChooserDesign.m; sourceTree = "<group>"; };
+		5BD297C518D774B700BB957C /* TBXLocaleChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXLocaleChooserViewController.h; sourceTree = "<group>"; };
+		5BD297C618D774B700BB957C /* TBXLocaleChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXLocaleChooserViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,8 +210,20 @@
 				5BD297B618D73A7F00BB957C /* TBXLocaleToolDesign.m */,
 				5BD297B818D73B3E00BB957C /* TBXLocaleToolViewController.h */,
 				5BD297B918D73B3E00BB957C /* TBXLocaleToolViewController.m */,
+				5BD297C118D7550800BB957C /* Locale Chooser */,
 			);
 			path = "Tool Locale";
+			sourceTree = "<group>";
+		};
+		5BD297C118D7550800BB957C /* Locale Chooser */ = {
+			isa = PBXGroup;
+			children = (
+				5BD297C218D76AE200BB957C /* TBXLocaleChooserDesign.h */,
+				5BD297C318D76AE200BB957C /* TBXLocaleChooserDesign.m */,
+				5BD297C518D774B700BB957C /* TBXLocaleChooserViewController.h */,
+				5BD297C618D774B700BB957C /* TBXLocaleChooserViewController.m */,
+			);
+			path = "Locale Chooser";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,10 +353,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BD297C718D774B700BB957C /* TBXLocaleChooserViewController.m in Sources */,
 				5BD2978918D733D500BB957C /* main.m in Sources */,
 				5BD297BD18D744D300BB957C /* TBXCell.m in Sources */,
 				5BD297B718D73A7F00BB957C /* TBXLocaleToolDesign.m in Sources */,
 				5BD2978A18D733D500BB957C /* TBXAppDelegate.m in Sources */,
+				5BD297C418D76AE200BB957C /* TBXLocaleChooserDesign.m in Sources */,
 				5BD297BA18D73B3E00BB957C /* TBXLocaleToolViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

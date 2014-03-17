@@ -130,6 +130,16 @@
 
 
 
+- (TBXLocaleChooserDesign *)createChooserDesign {
+    TBXLocaleChooserDesign *chooserDesign = [[TBXLocaleChooserDesign alloc] initWithLocale:self.workingLocale];
+    [OCAProperty(chooserDesign, chosenLocale, NSLocale) connectTo:OCAProperty(self, workingLocale, NSLocale)];
+    return chooserDesign;
+}
+
+
+
+
+
 @end
 
 
