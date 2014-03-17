@@ -61,8 +61,8 @@
                                         [OCATransformer objectForKey:NSLocaleIdentifier],
                                         [self.class transformLocaleToDisplayNameForKey:NSLocaleLanguageCode],
                                         [self.class transformLocaleToDisplayNameForKey:NSLocaleCountryCode],
-                                        [self.class transformLocaleToDisplayNameForKey:NSLocaleScriptCode],
-                                        [self.class transformLocaleToDisplayNameForKey:NSLocaleVariantCode],
+                                        [OCATransformer objectForKey:NSLocaleScriptCode], //TODO: Not working?
+                                        [OCATransformer objectForKey:NSLocaleVariantCode], //TODO: Not working?
                                         [OCATransformer sequence:
                                          @[
                                            [OCATransformer objectForKey:NSLocaleCalendar],
