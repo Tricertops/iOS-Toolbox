@@ -1,0 +1,14 @@
+//
+//  Prefix.pch
+//  Toolbox
+//
+//  Created by Martin Kiss on 17.3.14.
+//  Copyright © 2014 Triceratops Software s.r.o.
+//
+
+
+
+#import "Essentials.h"
+#import "ObjectiveChain.h"
+
+

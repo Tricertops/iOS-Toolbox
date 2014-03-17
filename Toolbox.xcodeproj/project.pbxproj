@@ -10,7 +10,75 @@
 		5BD2978818D733D500BB957C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BD2978218D733D500BB957C /* Images.xcassets */; };
 		5BD2978918D733D500BB957C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD2978518D733D500BB957C /* main.m */; };
 		5BD2978A18D733D500BB957C /* TBXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD2978718D733D500BB957C /* TBXAppDelegate.m */; };
+		5BD297A018D7373600BB957C /* libEssentials.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD2979918D736FD00BB957C /* libEssentials.a */; };
+		5BD297B318D7386000BB957C /* libObjectiveChain-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD297AA18D7384000BB957C /* libObjectiveChain-iOS.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5BD2979818D736FD00BB957C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BD2979218D736FD00BB957C /* Essentials.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BBFA588176205DF0061E8B5;
+			remoteInfo = Essentials;
+		};
+		5BD2979A18D736FD00BB957C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BD2979218D736FD00BB957C /* Essentials.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BFBABDF1844BAC300179483;
+			remoteInfo = "Essentials OS X";
+		};
+		5BD2979C18D736FD00BB957C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BD2979218D736FD00BB957C /* Essentials.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BBFA599176205DF0061E8B5;
+			remoteInfo = EssentialsTests;
+		};
+		5BD2979E18D7373100BB957C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BD2979218D736FD00BB957C /* Essentials.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BBFA587176205DF0061E8B5;
+			remoteInfo = Essentials;
+		};
+		5BD297A918D7384000BB957C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BD297A218D7384000BB957C /* Objective-Chain.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5B4F859E1871A4DB004695DA;
+			remoteInfo = "iOS Library";
+		};
+		5BD297AB18D7384000BB957C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BD297A218D7384000BB957C /* Objective-Chain.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5B4F85AE1871A4DC004695DA;
+			remoteInfo = "iOS Tests";
+		};
+		5BD297AD18D7384000BB957C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BD297A218D7384000BB957C /* Objective-Chain.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5B097E321871BE01006240D8;
+			remoteInfo = "OS X Library";
+		};
+		5BD297AF18D7384000BB957C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BD297A218D7384000BB957C /* Objective-Chain.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5B097E431871BE01006240D8;
+			remoteInfo = "OS X Tests";
+		};
+		5BD297B118D7385B00BB957C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BD297A218D7384000BB957C /* Objective-Chain.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B4F859D1871A4DB004695DA;
+			remoteInfo = "iOS Library";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5BD2975118D7338800BB957C /* iOS Toolbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Toolbox.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -21,6 +89,9 @@
 		5BD2978B18D733F400BB957C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BD2978C18D733F400BB957C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5BD2978D18D733F400BB957C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		5BD2979218D736FD00BB957C /* Essentials.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Essentials.xcodeproj; path = Essentials/Essentials.xcodeproj; sourceTree = "<group>"; };
+		5BD297A118D7376300BB957C /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		5BD297A218D7384000BB957C /* Objective-Chain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Objective-Chain.xcodeproj"; path = "Objective-Chain/Objective-Chain.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BD297B318D7386000BB957C /* libObjectiveChain-iOS.a in Frameworks */,
+				5BD297A018D7373600BB957C /* libEssentials.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				5BD2978418D733D500BB957C /* Global */,
+				5BD2979118D736C100BB957C /* Libraries */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -73,11 +147,42 @@
 		5BD2978418D733D500BB957C /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				5BD297A118D7376300BB957C /* Prefix.pch */,
 				5BD2978518D733D500BB957C /* main.m */,
 				5BD2978618D733D500BB957C /* TBXAppDelegate.h */,
 				5BD2978718D733D500BB957C /* TBXAppDelegate.m */,
 			);
 			path = Global;
+			sourceTree = "<group>";
+		};
+		5BD2979118D736C100BB957C /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				5BD2979218D736FD00BB957C /* Essentials.xcodeproj */,
+				5BD297A218D7384000BB957C /* Objective-Chain.xcodeproj */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		5BD2979318D736FD00BB957C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5BD2979918D736FD00BB957C /* libEssentials.a */,
+				5BD2979B18D736FD00BB957C /* libEssentialsOSX.a */,
+				5BD2979D18D736FD00BB957C /* EssentialsTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5BD297A318D7384000BB957C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5BD297AA18D7384000BB957C /* libObjectiveChain-iOS.a */,
+				5BD297AC18D7384000BB957C /* ObjectiveChain-iOS-Tests.xctest */,
+				5BD297AE18D7384000BB957C /* libObjectiveChain-OSX.a */,
+				5BD297B018D7384000BB957C /* ObjectiveChain-OSX-Tests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,6 +199,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				5BD297B218D7385B00BB957C /* PBXTargetDependency */,
+				5BD2979F18D7373100BB957C /* PBXTargetDependency */,
 			);
 			name = Toolbox;
 			productName = Toolbox;
@@ -120,12 +227,74 @@
 			mainGroup = 5BD2974618D7333500BB957C;
 			productRefGroup = 5BD2975218D7338800BB957C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5BD2979318D736FD00BB957C /* Products */;
+					ProjectRef = 5BD2979218D736FD00BB957C /* Essentials.xcodeproj */;
+				},
+				{
+					ProductGroup = 5BD297A318D7384000BB957C /* Products */;
+					ProjectRef = 5BD297A218D7384000BB957C /* Objective-Chain.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				5BD2975018D7338800BB957C /* Toolbox */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5BD2979918D736FD00BB957C /* libEssentials.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libEssentials.a;
+			remoteRef = 5BD2979818D736FD00BB957C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BD2979B18D736FD00BB957C /* libEssentialsOSX.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libEssentialsOSX.a;
+			remoteRef = 5BD2979A18D736FD00BB957C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BD2979D18D736FD00BB957C /* EssentialsTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = EssentialsTests.octest;
+			remoteRef = 5BD2979C18D736FD00BB957C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BD297AA18D7384000BB957C /* libObjectiveChain-iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libObjectiveChain-iOS.a";
+			remoteRef = 5BD297A918D7384000BB957C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BD297AC18D7384000BB957C /* ObjectiveChain-iOS-Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "ObjectiveChain-iOS-Tests.xctest";
+			remoteRef = 5BD297AB18D7384000BB957C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BD297AE18D7384000BB957C /* libObjectiveChain-OSX.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libObjectiveChain-OSX.a";
+			remoteRef = 5BD297AD18D7384000BB957C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BD297B018D7384000BB957C /* ObjectiveChain-OSX-Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "ObjectiveChain-OSX-Tests.xctest";
+			remoteRef = 5BD297AF18D7384000BB957C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5BD2974F18D7338800BB957C /* Resources */ = {
@@ -149,6 +318,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5BD2979F18D7373100BB957C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Essentials;
+			targetProxy = 5BD2979E18D7373100BB957C /* PBXContainerItemProxy */;
+		};
+		5BD297B218D7385B00BB957C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "iOS Library";
+			targetProxy = 5BD297B118D7385B00BB957C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		5BD2974B18D7333500BB957C /* Debug */ = {
@@ -198,6 +380,8 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Sources/Global/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -216,12 +400,19 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"Sources/Libraries/**",
+				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "iOS Toolbox";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
+				WARNING_CFLAGS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -260,6 +451,8 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Sources/Global/Prefix.pch;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
@@ -273,12 +466,19 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"Sources/Libraries/**",
+				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "iOS Toolbox";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				WARNING_CFLAGS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

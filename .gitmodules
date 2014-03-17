@@ -1,0 +1,6 @@
+[submodule "Sources/Libraries/Essentials"]
+	path = Sources/Libraries/Essentials
+	url = https://iMartin@bitbucket.org/iAdverti/essentials.git
+[submodule "Sources/Libraries/Objective-Chain"]
+	path = Sources/Libraries/Objective-Chain
+	url = https://iMartinKiss@github.com/iMartinKiss/Objective-Chain.git
