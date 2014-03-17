@@ -34,12 +34,7 @@
           nil] connectTo:OCAProperty(self, workingRepresentation, NSString)];
         
         [[OCAProperty(self, workingLocale, NSLocale) transformValues:
-          [OCATransformer branchArray:@[
-                                        [self.class transformLocaleToDisplayNameForKey:NSLocaleLanguageCode],
-                                        [self.class transformLocaleToDisplayNameForKey:NSLocaleCountryCode],
-                                        [self.class transformLocaleToDisplayNameForKey:NSLocaleVariantCode],
-                                        ]],
-          [OCATransformer formatString:@"%@ (%@)"],
+          [self.class transformLocaleToDisplayNameForKey:NSLocaleIdentifier],
           nil] connectTo:OCAProperty(self, workingTitle, NSString)];
         
         [[OCAProperty(self, workingLocale, NSLocale) transformValues:
@@ -47,18 +42,37 @@
           nil] connectTo:OCAProperty(self, workingSubtitle, NSString)];
         
         self->_componentTitles = @[
+                                   @"Identifier",
                                    @"Language",
                                    @"Country",
                                    @"Script",
                                    @"Variant",
+                                   @"Currency",
+                                   @"Currency Code",
+                                   @"Currency Symbol",
+                                   @"Measurement System",
+                                   @"Decimal Separator",
+                                   @"Grouping Separator",
                                    ];
         self->_componentCount = self.componentTitles.count;
         [[OCAProperty(self, workingLocale, NSLocale) transformValues:
           [OCATransformer branchArray:@[
+                                        [OCATransformer objectForKey:NSLocaleIdentifier],
                                         [self.class transformLocaleToDisplayNameForKey:NSLocaleLanguageCode],
                                         [self.class transformLocaleToDisplayNameForKey:NSLocaleCountryCode],
                                         [self.class transformLocaleToDisplayNameForKey:NSLocaleScriptCode],
                                         [self.class transformLocaleToDisplayNameForKey:NSLocaleVariantCode],
+                                        [self.class transformLocaleToDisplayNameForKey:NSLocaleCurrencyCode],
+                                        [OCATransformer objectForKey:NSLocaleCurrencyCode],
+                                        [OCATransformer objectForKey:NSLocaleCurrencySymbol],
+                                        [OCATransformer objectForKey:NSLocaleMeasurementSystem],
+                                        [OCATransformer objectForKey:NSLocaleDecimalSeparator],
+                                        [OCATransformer sequence:@[
+                                                                   [OCATransformer objectForKey:NSLocaleGroupingSeparator],
+                                                                   [OCATransformer if:[OCAPredicate isIn:@"  "] // SPACE, NO-BREAK SPACE
+                                                                    then:[OCATransformer replaceWith:@"(space)"]
+                                                                    else:[OCATransformer pass]],
+                                                                   ]],
                                         ]],
           nil] connectTo:OCAProperty(self, componentValues, NSArray)];
     }
