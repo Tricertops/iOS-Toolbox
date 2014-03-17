@@ -18,6 +18,7 @@
 
 
 @property (nonatomic, readwrite, strong) TBXCell *workingLocaleCell;
+@property (nonatomic, readwrite, strong) NSArray *componentCells;
 
 
 
@@ -55,7 +56,7 @@
         
         self.title = @"Locale";
         
-        [[OCAProperty(self.design, representation, NSString) transformValues:
+        [[OCAProperty(self.design, workingRepresentation, NSString) transformValues:
           [self.class transformStringToTabBarImage],
           nil] connectTo:OCAProperty(self, tabBarItem.image, UIImage)];
     }
@@ -82,19 +83,44 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     self.workingLocaleCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     self.workingLocaleCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    [OCAProperty(self.design, workingLocaleTitle, NSString) connectTo:OCAProperty(self, workingLocaleCell.textLabel.text, NSString)];
-    [OCAProperty(self.design, workingLocaleSubtitle, NSString) connectTo:OCAProperty(self, workingLocaleCell.detailTextLabel.text, NSString)];
+    [OCAProperty(self.design, workingTitle, NSString) connectTo:OCAProperty(self, workingLocaleCell.textLabel.text, NSString)];
+    [OCAProperty(self.design, workingSubtitle, NSString) connectTo:OCAProperty(self, workingLocaleCell.detailTextLabel.text, NSString)];
+    
+    
+    NSMutableArray *componentCells = [[NSMutableArray alloc] init];
+    for (NSUInteger index = 0; index < self.design.componentCount; index++) {
+        TBXCell *cell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        [[OCAProperty(self.design, componentTitles, NSArray) transformValues:
+          [OCATransformer objectAtIndex:index],
+          nil] connectTo:OCAProperty(cell, textLabel.text, NSString)];
+        
+        [[OCAProperty(self.design, componentValues, NSArray) transformValues:
+          [OCATransformer objectAtIndex:index],
+          nil] connectTo:OCAProperty(cell, detailTextLabel.text, NSString)];
+        
+        [componentCells addObject:cell];
+    }
+    self.componentCells = componentCells;
 }
 
 
 
 
 
+- (NSInteger)numberOfSectionsInTableView:(__unused UITableView *)tableView {
+    return 2;
+}
+
+
 - (NSInteger)tableView:(__unused UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0: return 1;
+        case 1: return self.componentCells.count;
     }
     return 0;
 }
@@ -103,6 +129,7 @@
 - (NSString *)tableView:(__unused UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
         case 0: return @"Working Locale";
+        case 1: return @"Components";
     }
     return nil;
 }
@@ -111,6 +138,7 @@
 - (UITableViewCell *)tableView:(__unused UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case 0: return self.workingLocaleCell;
+        case 1: return [self.componentCells objectAtIndex:indexPath.row];
     }
     return nil;
 }

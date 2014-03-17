@@ -31,7 +31,7 @@
         
         [[OCAProperty(self, workingLocale, NSLocale) transformValues:
          [OCATransformer objectForKey:NSLocaleCountryCode],
-          nil] connectTo:OCAProperty(self, representation, NSString)];
+          nil] connectTo:OCAProperty(self, workingRepresentation, NSString)];
         
         [[OCAProperty(self, workingLocale, NSLocale) transformValues:
           [OCATransformer branchArray:@[
@@ -40,11 +40,27 @@
                                         [self.class transformLocaleToDisplayNameForKey:NSLocaleVariantCode],
                                         ]],
           [OCATransformer formatString:@"%@ (%@)"],
-          nil] connectTo:OCAProperty(self, workingLocaleTitle, NSString)];
+          nil] connectTo:OCAProperty(self, workingTitle, NSString)];
         
         [[OCAProperty(self, workingLocale, NSLocale) transformValues:
           [OCATransformer objectForKey:NSLocaleIdentifier],
-          nil] connectTo:OCAProperty(self, workingLocaleSubtitle, NSString)];
+          nil] connectTo:OCAProperty(self, workingSubtitle, NSString)];
+        
+        self->_componentTitles = @[
+                                   @"Language",
+                                   @"Country",
+                                   @"Script",
+                                   @"Variant",
+                                   ];
+        self->_componentCount = self.componentTitles.count;
+        [[OCAProperty(self, workingLocale, NSLocale) transformValues:
+          [OCATransformer branchArray:@[
+                                        [self.class transformLocaleToDisplayNameForKey:NSLocaleLanguageCode],
+                                        [self.class transformLocaleToDisplayNameForKey:NSLocaleCountryCode],
+                                        [self.class transformLocaleToDisplayNameForKey:NSLocaleScriptCode],
+                                        [self.class transformLocaleToDisplayNameForKey:NSLocaleVariantCode],
+                                        ]],
+          nil] connectTo:OCAProperty(self, componentValues, NSArray)];
     }
     return self;
 }
