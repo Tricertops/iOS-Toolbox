@@ -12,6 +12,8 @@
 		5BD2978A18D733D500BB957C /* TBXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD2978718D733D500BB957C /* TBXAppDelegate.m */; };
 		5BD297A018D7373600BB957C /* libEssentials.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD2979918D736FD00BB957C /* libEssentials.a */; };
 		5BD297B318D7386000BB957C /* libObjectiveChain-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD297AA18D7384000BB957C /* libObjectiveChain-iOS.a */; };
+		5BD297B718D73A7F00BB957C /* TBXLocaleToolDesign.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD297B618D73A7F00BB957C /* TBXLocaleToolDesign.m */; };
+		5BD297BA18D73B3E00BB957C /* TBXLocaleToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD297B918D73B3E00BB957C /* TBXLocaleToolViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +94,10 @@
 		5BD2979218D736FD00BB957C /* Essentials.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Essentials.xcodeproj; path = Essentials/Essentials.xcodeproj; sourceTree = "<group>"; };
 		5BD297A118D7376300BB957C /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		5BD297A218D7384000BB957C /* Objective-Chain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Objective-Chain.xcodeproj"; path = "Objective-Chain/Objective-Chain.xcodeproj"; sourceTree = "<group>"; };
+		5BD297B518D73A7F00BB957C /* TBXLocaleToolDesign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXLocaleToolDesign.h; sourceTree = "<group>"; };
+		5BD297B618D73A7F00BB957C /* TBXLocaleToolDesign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXLocaleToolDesign.m; sourceTree = "<group>"; };
+		5BD297B818D73B3E00BB957C /* TBXLocaleToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXLocaleToolViewController.h; sourceTree = "<group>"; };
+		5BD297B918D73B3E00BB957C /* TBXLocaleToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXLocaleToolViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				5BD2978418D733D500BB957C /* Global */,
+				5BD297B418D739E300BB957C /* Tool Locale */,
 				5BD2979118D736C100BB957C /* Libraries */,
 			);
 			path = Sources;
@@ -183,6 +190,17 @@
 				5BD297B018D7384000BB957C /* ObjectiveChain-OSX-Tests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5BD297B418D739E300BB957C /* Tool Locale */ = {
+			isa = PBXGroup;
+			children = (
+				5BD297B518D73A7F00BB957C /* TBXLocaleToolDesign.h */,
+				5BD297B618D73A7F00BB957C /* TBXLocaleToolDesign.m */,
+				5BD297B818D73B3E00BB957C /* TBXLocaleToolViewController.h */,
+				5BD297B918D73B3E00BB957C /* TBXLocaleToolViewController.m */,
+			);
+			path = "Tool Locale";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,7 +331,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BD2978918D733D500BB957C /* main.m in Sources */,
+				5BD297B718D73A7F00BB957C /* TBXLocaleToolDesign.m in Sources */,
 				5BD2978A18D733D500BB957C /* TBXAppDelegate.m in Sources */,
+				5BD297BA18D73B3E00BB957C /* TBXLocaleToolViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

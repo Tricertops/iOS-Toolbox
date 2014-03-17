@@ -9,6 +9,7 @@
 @import UIKit.UIScreen;
 @import UIKit.UIViewController;
 #import "TBXAppDelegate.h"
+#import "TBXLocaleToolViewController.h"
 
 
 
@@ -27,8 +28,13 @@
 
 - (BOOL)application:(__unused UIApplication *)application didFinishLaunchingWithOptions:(__unused NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[UIViewController alloc] init];
-    self.window.rootViewController.view.backgroundColor = [UIColor whiteColor];
+    
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.viewControllers = @[
+                                         [[TBXLocaleToolViewController alloc] init],
+                                         ];
+    self.window.rootViewController = tabBarController;
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
