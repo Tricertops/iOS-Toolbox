@@ -21,8 +21,7 @@
 @property (atomic, readwrite, strong) NSLocale *workingLocale;
 
 @property (atomic, readonly, strong) NSString *workingRepresentation;
-@property (atomic, readonly, strong) NSString *workingTitle;
-@property (atomic, readonly, strong) NSString *workingSubtitle;
+@property (atomic, readonly, strong) NSString *workingLocaleTitle;
 
 @property (atomic, readonly, assign) NSUInteger componentCount;
 @property (atomic, readonly, strong) NSArray *componentTitles;

@@ -35,11 +35,7 @@
         
         [[OCAProperty(self, workingLocale, NSLocale) transformValues:
           [self.class transformLocaleToDisplayNameForKey:NSLocaleIdentifier],
-          nil] connectTo:OCAProperty(self, workingTitle, NSString)];
-        
-        [[OCAProperty(self, workingLocale, NSLocale) transformValues:
-          [OCATransformer objectForKey:NSLocaleIdentifier],
-          nil] connectTo:OCAProperty(self, workingSubtitle, NSString)];
+          nil] connectTo:OCAProperty(self, workingLocaleTitle, NSString)];
         
         self->_componentTitles = @[
                                    @"Identifier",

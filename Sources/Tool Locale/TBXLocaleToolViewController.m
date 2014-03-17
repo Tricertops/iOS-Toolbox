@@ -86,8 +86,8 @@
     
     self.workingLocaleCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     self.workingLocaleCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    [OCAProperty(self.design, workingTitle, NSString) connectTo:OCAProperty(self, workingLocaleCell.textLabel.text, NSString)];
-    [OCAProperty(self.design, workingSubtitle, NSString) connectTo:OCAProperty(self, workingLocaleCell.detailTextLabel.text, NSString)];
+    self.workingLocaleCell.textLabel.text = @"Current";
+    [OCAProperty(self.design, workingLocaleTitle, NSString) connectTo:OCAProperty(self, workingLocaleCell.detailTextLabel.text, NSString)];
     
     
     NSMutableArray *componentCells = [[NSMutableArray alloc] init];
