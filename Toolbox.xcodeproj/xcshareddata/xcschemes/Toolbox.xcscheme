@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5BD2975018D7338800BB957C"
-               BuildableName = "Toolbox.app"
+               BuildableName = "iOS Toolbox.app"
                BlueprintName = "Toolbox"
                ReferencedContainer = "container:Toolbox.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5BD2975018D7338800BB957C"
-            BuildableName = "Toolbox.app"
+            BuildableName = "iOS Toolbox.app"
             BlueprintName = "Toolbox"
             ReferencedContainer = "container:Toolbox.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5BD2975018D7338800BB957C"
-            BuildableName = "Toolbox.app"
+            BuildableName = "iOS Toolbox.app"
             BlueprintName = "Toolbox"
             ReferencedContainer = "container:Toolbox.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5BD2975018D7338800BB957C"
-            BuildableName = "Toolbox.app"
+            BuildableName = "iOS Toolbox.app"
             BlueprintName = "Toolbox"
             ReferencedContainer = "container:Toolbox.xcodeproj">
          </BuildableReference>
