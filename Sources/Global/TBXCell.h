@@ -22,6 +22,9 @@
 + (Class)subtitleStyleCellClass;
 
 
+@property (nonatomic, readonly, strong) OCACommand *selectionCallback;
+
+
 
 @end
 

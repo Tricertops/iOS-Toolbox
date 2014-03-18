@@ -21,6 +21,14 @@
 
 
 
+@interface TBXCell ()
+
+@end
+
+
+
+
+
 
 
 
@@ -58,7 +66,8 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
+        self->_selectionCallback = [OCACommand commandForClass:nil];
+        //TODO: Set selection style only if selection callback has consumers.
     }
     return self;
 }
