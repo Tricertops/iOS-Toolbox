@@ -103,6 +103,19 @@
                                                                    cells:workingLocaleCell, nil];
         [sections addObject:workingLocaleSection];
     }
+    {
+        TBXCell *languageCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        languageCell.textLabel.text = @"Language";
+        [[[OCAHub combine:
+         OCAProperty(self.design, workingLocaleDesign.languageName, NSString),
+         OCAProperty(self.design, workingLocaleDesign.languageCode, NSString),
+         nil] transformValues:
+        [OCATransformer formatString:@"%@ (%@)"],
+         nil] connectTo:OCAProperty(languageCell, detailTextLabel.text, NSString)];
+        
+        TBXSection *componentsSection = [TBXSection sectionWithHeader:nil footer:nil cells:languageCell, nil];
+        [sections addObject:componentsSection];
+    }
     self.sections = sections;
 }
 
@@ -145,6 +158,12 @@
 - (NSString *)tableView:(__unused UITableView *)tableView titleForHeaderInSection:(NSInteger)index {
     TBXSection *section = [self.sections objectAtIndex:index];
     return section.headerTitle;
+}
+
+
+- (NSString *)tableView:(__unused UITableView *)tableView titleForFooterInSection:(NSInteger)index {
+    TBXSection *section = [self.sections objectAtIndex:index];
+    return section.footerTitle;
 }
 
 
