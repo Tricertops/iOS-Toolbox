@@ -85,6 +85,7 @@
     NSMutableArray *sections = [[NSMutableArray alloc] init];
     {
         TBXCell *displayLocaleCell = [self createLocaleCellWithTitle:OCAProperty(self.design, displayLocaleDesign.title, NSString)
+                                                            subtitle:OCAProperty(self.design, displayLocaleDesign.identifier, NSString)
                                                                 fade:OCAProperty(self.design, displayLocaleDesign.isCurrentLocale, BOOL)
                                                    selectionProperty:OCAProperty(self.design, displayLocaleDesign.locale, NSLocale)];
         TBXSection *displayLocaleSection = [TBXSection sectionWithHeader:@"Display Locale"
@@ -94,6 +95,7 @@
     }
     {
         TBXCell *workingLocaleCell = [self createLocaleCellWithTitle:OCAProperty(self.design, workingLocaleDesign.title, NSString)
+                                                            subtitle:OCAProperty(self.design, workingLocaleDesign.identifier, NSString)
                                                                 fade:OCAProperty(self.design, workingLocaleDesign.isCurrentLocale, BOOL)
                                                    selectionProperty:OCAProperty(self.design, workingLocaleDesign.locale, NSLocale)];
         TBXSection *workingLocaleSection = [TBXSection sectionWithHeader:@"Working Locale"
@@ -105,15 +107,21 @@
 }
 
 
-- (TBXCell *)createLocaleCellWithTitle:(OCAProducer *)title fade:(OCAProducer *)fade selectionProperty:(OCAProperty *)selectionProperty {
-    TBXCell *cell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+- (TBXCell *)createLocaleCellWithTitle:(OCAProducer *)title subtitle:(OCAProducer *)subtitle fade:(OCAProducer *)fade selectionProperty:(OCAProperty *)selectionProperty {
+    TBXCell *cell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     [title connectTo:OCAProperty(cell, textLabel.text, NSString)];
+    [subtitle connectTo:OCAProperty(cell, detailTextLabel.text, NSString)];
+    
     [[fade transformValues:
       [OCATransformer ifYes:[UIColor grayColor]
                        ifNo:[UIColor blackColor]],
-      nil] connectTo:OCAProperty(cell, textLabel.textColor, UIColor)];
+      nil] connectToMany:
+     OCAProperty(cell, textLabel.textColor, UIColor),
+     OCAProperty(cell, detailTextLabel.textColor, UIColor),
+     nil];
+    
     [cell.selectionCallback invoke:OCAInvocation(self, presentLocaleChooserForProperty:selectionProperty)];
     
     return cell;
