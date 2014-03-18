@@ -20,6 +20,7 @@
 @property (atomic, readwrite, strong) NSLocale *displayLocale;
 
 @property (atomic, readonly, copy) NSString *identifier;
+@property (atomic, readonly, assign) BOOL isCurrentLocale;
 @property (atomic, readonly, assign) NSUInteger windowsCode;
 @property (atomic, readonly, copy) NSString *title;
 

@@ -33,6 +33,11 @@
           [OCATransformer objectForKey:NSLocaleIdentifier],
           nil] connectTo:OCAProperty(self, identifier, NSString)];
         
+        [[[locale dependOn:[OCANotificator notify:NSCurrentLocaleDidChangeNotification], nil]
+         transformValues:
+         [OCATransformer evaluatePredicate:[OCAPredicate isEqualTo:[NSLocale autoupdatingCurrentLocale]]],
+         nil] connectTo:OCAProperty(self, isCurrentLocale, BOOL)];
+        
         [[OCAProperty(self, identifier, NSString) transformValues:
           [OCATransformer fromClass:[NSString class] toClass:[NSNumber class]
                           asymetric:^NSNumber *(NSString *input) {
