@@ -19,7 +19,7 @@
 
 
 @property (nonatomic, readwrite, strong) TBXCell *workingLocaleCell;
-@property (nonatomic, readwrite, strong) NSArray *componentCells;
+@property (nonatomic, readwrite, strong) TBXCell *displayLocaleCell;
 
 
 
@@ -57,9 +57,9 @@
         
         self.title = @"Locale";
         
-        [[OCAProperty(self.design, workingRepresentation, NSString) transformValues:
+        [[OCAProperty(self.design, titleSymbol, NSString) transformValues:
           [self.class transformStringToTabBarImage],
-          nil] connectTo:OCAProperty(self, tabBarItem.image, UIImage)];
+          nil] connectTo:OCAProperty(self, tabBarItem.image, UIImage)]; //TODO: Doesn't update, reason unknown.
     }
     return self;
 }
@@ -87,26 +87,14 @@
     
     self.workingLocaleCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     self.workingLocaleCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    self.workingLocaleCell.textLabel.text = @"Current";
-    [OCAProperty(self.design, workingLocaleTitle, NSString) connectTo:OCAProperty(self, workingLocaleCell.detailTextLabel.text, NSString)];
+    self.workingLocaleCell.textLabel.text = @"Working";
+    [OCAProperty(self.design, workingLocaleDesign.title, NSString) connectTo:OCAProperty(self, workingLocaleCell.detailTextLabel.text, NSString)];
     
+    self.displayLocaleCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+    self.displayLocaleCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.displayLocaleCell.textLabel.text = @"Display";
+    [OCAProperty(self.design, displayLocaleDesign.title, NSString) connectTo:OCAProperty(self, displayLocaleCell.detailTextLabel.text, NSString)];
     
-    NSMutableArray *componentCells = [[NSMutableArray alloc] init];
-    for (NSUInteger index = 0; index < self.design.componentCount; index++) {
-        TBXCell *cell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        [[OCAProperty(self.design, componentTitles, NSArray) transformValues:
-          [OCATransformer objectAtIndex:index],
-          nil] connectTo:OCAProperty(cell, textLabel.text, NSString)];
-        
-        [[OCAProperty(self.design, componentValues, NSArray) transformValues:
-          [OCATransformer objectAtIndex:index],
-          nil] connectTo:OCAProperty(cell, detailTextLabel.text, NSString)];
-        
-        [componentCells addObject:cell];
-    }
-    self.componentCells = componentCells;
 }
 
 
@@ -120,8 +108,7 @@
 
 - (NSInteger)tableView:(__unused UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
-        case 0: return 1;
-        case 1: return self.componentCells.count;
+        case 0: return 2;
     }
     return 0;
 }
@@ -129,8 +116,7 @@
 
 - (NSString *)tableView:(__unused UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
-        case 0: return @"Working Locale";
-        case 1: return @"Components";
+        case 0: return @"Locales";
     }
     return nil;
 }
@@ -138,27 +124,33 @@
 
 - (UITableViewCell *)tableView:(__unused UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
-        case 0: return self.workingLocaleCell;
-        case 1: return [self.componentCells objectAtIndex:indexPath.row];
+        case 0: {
+            switch (indexPath.row) {
+                case 0: return self.workingLocaleCell;
+                case 1: return self.displayLocaleCell;
+            }
+        }
     }
     return nil;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath && indexPath.section == 0 && indexPath.row == 0) {
-        [self presentLocaleChooser];
+    if (indexPath) {
+        if (indexPath.section == 0) {
+            TBXLocaleChooserDesign *chooserDesign = [[TBXLocaleChooserDesign alloc] initWithLocale:self.design.workingLocaleDesign.locale];
+            [OCAProperty(chooserDesign, chosenLocale, NSLocale)
+             connectTo:(indexPath.row == 0
+                        ? OCAProperty(self.design, workingLocaleDesign.locale, NSLocale)
+                        : OCAProperty(self.design, displayLocaleDesign.locale, NSLocale))];
+            
+            TBXLocaleChooserViewController *localeChooser = [[TBXLocaleChooserViewController alloc] initWithDesign:chooserDesign];
+            [self.navigationController pushViewController:localeChooser animated:YES];
+        }
     }
     else {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-}
-
-
-- (void)presentLocaleChooser {
-    TBXLocaleChooserDesign *chooserDesign = [self.design createChooserDesign];
-    TBXLocaleChooserViewController *localeChooser = [[TBXLocaleChooserViewController alloc] initWithDesign:chooserDesign];
-    [self.navigationController pushViewController:localeChooser animated:YES];
 }
 
 
