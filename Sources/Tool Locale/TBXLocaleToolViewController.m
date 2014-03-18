@@ -8,6 +8,7 @@
 
 #import "TBXLocaleToolViewController.h"
 #import "TBXCell.h"
+#import "TBXSection.h"
 #import "TBXLocaleChooserViewController.h"
 
 
@@ -17,10 +18,7 @@
 @interface TBXLocaleToolViewController ()
 
 
-
-@property (nonatomic, readwrite, strong) TBXCell *workingLocaleCell;
-@property (nonatomic, readwrite, strong) TBXCell *displayLocaleCell;
-
+@property (nonatomic, readwrite, strong) NSArray *sections;
 
 
 @end
@@ -84,13 +82,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.displayLocaleCell = [self createLocaleCellWithTitle:OCAProperty(self.design, displayLocaleDesign.title, NSString)
-                                                        fade:OCAProperty(self.design, displayLocaleDesign.isCurrentLocale, BOOL)
-                                           selectionProperty:OCAProperty(self.design, displayLocaleDesign.locale, NSLocale)];
-    
-    self.workingLocaleCell = [self createLocaleCellWithTitle:OCAProperty(self.design, workingLocaleDesign.title, NSString)
-                                                        fade:OCAProperty(self.design, workingLocaleDesign.isCurrentLocale, BOOL)
-                                           selectionProperty:OCAProperty(self.design, workingLocaleDesign.locale, NSLocale)];
+    NSMutableArray *sections = [[NSMutableArray alloc] init];
+    {
+        TBXCell *displayLocaleCell = [self createLocaleCellWithTitle:OCAProperty(self.design, displayLocaleDesign.title, NSString)
+                                                                fade:OCAProperty(self.design, displayLocaleDesign.isCurrentLocale, BOOL)
+                                                   selectionProperty:OCAProperty(self.design, displayLocaleDesign.locale, NSLocale)];
+        TBXSection *displayLocaleSection = [TBXSection sectionWithHeader:@"Display Locale"
+                                                                  footer:nil
+                                                                   cells:displayLocaleCell, nil];
+        [sections addObject:displayLocaleSection];
+    }
+    {
+        TBXCell *workingLocaleCell = [self createLocaleCellWithTitle:OCAProperty(self.design, workingLocaleDesign.title, NSString)
+                                                                fade:OCAProperty(self.design, workingLocaleDesign.isCurrentLocale, BOOL)
+                                                   selectionProperty:OCAProperty(self.design, workingLocaleDesign.locale, NSLocale)];
+        TBXSection *workingLocaleSection = [TBXSection sectionWithHeader:@"Working Locale"
+                                                                  footer:nil
+                                                                   cells:workingLocaleCell, nil];
+        [sections addObject:workingLocaleSection];
+    }
+    self.sections = sections;
 }
 
 
@@ -113,34 +124,25 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(__unused UITableView *)tableView {
-    return 2;
+    return self.sections.count;
 }
 
 
-- (NSInteger)tableView:(__unused UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case 0: return 1;
-        case 1: return 1;
-    }
-    return 0;
+- (NSInteger)tableView:(__unused UITableView *)tableView numberOfRowsInSection:(NSInteger)index {
+    TBXSection *section = [self.sections objectAtIndex:index];
+    return section.cells.count;
 }
 
 
-- (NSString *)tableView:(__unused UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    switch (section) {
-        case 0: return @"Display Locale";
-        case 1: return @"Working Locale";
-    }
-    return nil;
+- (NSString *)tableView:(__unused UITableView *)tableView titleForHeaderInSection:(NSInteger)index {
+    TBXSection *section = [self.sections objectAtIndex:index];
+    return section.headerTitle;
 }
 
 
 - (UITableViewCell *)tableView:(__unused UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.section) {
-        case 0: return self.displayLocaleCell;
-        case 1: return self.workingLocaleCell;
-    }
-    return nil;
+    TBXSection *section = [self.sections objectAtIndex:indexPath.section];
+    return [section.cells objectAtIndex:indexPath.row];
 }
 
 

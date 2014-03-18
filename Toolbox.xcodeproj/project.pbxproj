@@ -18,6 +18,7 @@
 		5BD297C418D76AE200BB957C /* TBXLocaleChooserDesign.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD297C318D76AE200BB957C /* TBXLocaleChooserDesign.m */; };
 		5BD297C718D774B700BB957C /* TBXLocaleChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD297C618D774B700BB957C /* TBXLocaleChooserViewController.m */; };
 		5BD297D418D8242E00BB957C /* TBXLocaleDesign.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD297D318D8242E00BB957C /* TBXLocaleDesign.m */; };
+		5BD297D918D83C4F00BB957C /* TBXSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD297D818D83C4F00BB957C /* TBXSection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,8 @@
 		5BD297C618D774B700BB957C /* TBXLocaleChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXLocaleChooserViewController.m; sourceTree = "<group>"; };
 		5BD297D218D8242E00BB957C /* TBXLocaleDesign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXLocaleDesign.h; sourceTree = "<group>"; };
 		5BD297D318D8242E00BB957C /* TBXLocaleDesign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXLocaleDesign.m; sourceTree = "<group>"; };
+		5BD297D718D83C4F00BB957C /* TBXSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXSection.h; sourceTree = "<group>"; };
+		5BD297D818D83C4F00BB957C /* TBXSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXSection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +175,8 @@
 				5BD2978718D733D500BB957C /* TBXAppDelegate.m */,
 				5BD297BB18D744D300BB957C /* TBXCell.h */,
 				5BD297BC18D744D300BB957C /* TBXCell.m */,
+				5BD297D718D83C4F00BB957C /* TBXSection.h */,
+				5BD297D818D83C4F00BB957C /* TBXSection.m */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -363,6 +368,7 @@
 				5BD297BD18D744D300BB957C /* TBXCell.m in Sources */,
 				5BD297B718D73A7F00BB957C /* TBXLocaleToolDesign.m in Sources */,
 				5BD297D418D8242E00BB957C /* TBXLocaleDesign.m in Sources */,
+				5BD297D918D83C4F00BB957C /* TBXSection.m in Sources */,
 				5BD2978A18D733D500BB957C /* TBXAppDelegate.m in Sources */,
 				5BD297C418D76AE200BB957C /* TBXLocaleChooserDesign.m in Sources */,
 				5BD297BA18D73B3E00BB957C /* TBXLocaleToolViewController.m in Sources */,
