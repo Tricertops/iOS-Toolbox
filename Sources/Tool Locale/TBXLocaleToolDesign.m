@@ -30,6 +30,8 @@
         self->_workingLocaleDesign = [[TBXLocaleDesign alloc] init];
         self->_displayLocaleDesign = [[TBXLocaleDesign alloc] init];
         
+        [OCAProperty(self, displayLocaleDesign.locale, NSLocale) connectTo:OCAProperty(self, workingLocaleDesign.displayLocale, NSLocale)];
+        
         [OCAProperty(self, workingLocaleDesign.countryCode, NSString) connectTo:OCAProperty(self, titleSymbol, NSString)];
     }
     return self;
