@@ -113,7 +113,24 @@
         [OCATransformer formatString:@"%@ (%@)"],
          nil] connectTo:OCAProperty(languageCell, detailTextLabel.text, NSString)];
         
-        TBXSection *componentsSection = [TBXSection sectionWithHeader:nil footer:nil cells:languageCell, nil];
+        TBXCell *countryCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        countryCell.textLabel.text = @"Country";
+        [[[OCAHub combine:
+           OCAProperty(self.design, workingLocaleDesign.countryName, NSString),
+           OCAProperty(self.design, workingLocaleDesign.countryCode, NSString),
+           nil] transformValues:
+          [OCATransformer formatString:@"%@ (%@)"],
+          nil] connectTo:OCAProperty(countryCell, detailTextLabel.text, NSString)];
+        
+        TBXCell *variantCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        variantCell.textLabel.text = @"Variant";
+        [[OCAProperty(self.design, workingLocaleDesign.variantCode, NSString) transformValues:
+          [OCATransformer if:[OCAPredicate isEmpty] then:[OCATransformer replaceWith:@"(none)"] else:nil],
+          nil] connectTo:OCAProperty(variantCell, detailTextLabel.text, NSString)];
+        
+        TBXSection *componentsSection = [TBXSection sectionWithHeader:@"   Components"
+                                                               footer:nil
+                                                                cells:languageCell, countryCell, variantCell, nil];
         [sections addObject:componentsSection];
     }
     self.sections = sections;
