@@ -32,7 +32,13 @@
         
         [OCAProperty(self, displayLocaleDesign.locale, NSLocale) connectTo:OCAProperty(self, workingLocaleDesign.displayLocale, NSLocale)];
         
-        [OCAProperty(self, workingLocaleDesign.countryCode, NSString) connectTo:OCAProperty(self, titleSymbol, NSString)];
+        [[[OCAHub combine:
+          OCAProperty(self, workingLocaleDesign.countryCode, NSString),
+          OCAProperty(self, workingLocaleDesign.languageCode, NSString),
+          nil] transformValues:
+          [OCATransformer removeNullsFromArray], // In case the countryCode is missing, will use languageCode
+          [OCATransformer objectAtIndex:0],
+          nil] connectTo:OCAProperty(self, titleSymbol, NSString)];
     }
     return self;
 }
