@@ -181,6 +181,17 @@
                                                                 cells:scriptCell, characterDirectionCell, lineDirectionCell, exemplarCharactersCell, nil];
         [sections addObject:writingSection];
     }
+    {
+        TBXCell *calendarCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        calendarCell.textLabel.text = @"Calendar";
+        [OCAProperty(self.design, workingLocaleDesign.calendarName, NSString)
+         connectTo:OCAProperty(calendarCell, detailTextLabel.text, NSString)];
+        
+        TBXSection *calendarSection = [TBXSection sectionWithHeader:@"   Calendar"
+                                                            footer:nil
+                                                             cells:calendarCell, nil];
+        [sections addObject:calendarSection];
+    }
     self.sections = sections;
 }
 

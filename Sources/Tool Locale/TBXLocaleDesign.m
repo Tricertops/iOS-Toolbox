@@ -34,9 +34,9 @@
           nil] connectTo:OCAProperty(self, identifier, NSString)];
         
         [[[locale dependOn:[OCANotificator notify:NSCurrentLocaleDidChangeNotification], nil]
-         transformValues:
-         [OCATransformer evaluatePredicate:[OCAPredicate isEqualTo:[NSLocale autoupdatingCurrentLocale]]],
-         nil] connectTo:OCAProperty(self, isCurrentLocale, BOOL)];
+          transformValues:
+          [OCATransformer evaluatePredicate:[OCAPredicate isEqualTo:[NSLocale autoupdatingCurrentLocale]]],
+          nil] connectTo:OCAProperty(self, isCurrentLocale, BOOL)];
         
         [[OCAProperty(self, identifier, NSString) transformValues:
           [OCATransformer fromClass:[NSString class] toClass:[NSNumber class]
@@ -98,6 +98,27 @@
           [OCATransformer objectForKey:NSLocaleExemplarCharacterSet],
           [self transformCharacterSetToString],
           nil] connectTo:OCAProperty(self, exemplarCharacters, NSString)];
+        
+        
+        
+        [[locale transformValues:
+          [OCATransformer objectForKey:NSLocaleCalendar],
+          [OCATransformer access:OCAKeyPath(NSCalendar, calendarIdentifier, NSString)],
+          [OCATransformer map:@{
+                                NSGregorianCalendar: @"Gregorian",
+                                NSBuddhistCalendar: @"Buddhist",
+                                NSChineseCalendar: @"Chinese",
+                                NSHebrewCalendar: @"Hebrew",
+                                NSIslamicCalendar: @"Islamic",
+                                NSIslamicCivilCalendar: @"Islamic Civil",
+                                NSJapaneseCalendar: @"Japanese",
+                                NSRepublicOfChinaCalendar: @"Taiwan",
+                                NSPersianCalendar: @"Persian",
+                                NSIndianCalendar: @"Indian",
+                                NSISO8601Calendar: @"ISO-8601",
+                                NSNull.null : @"(unknown)",
+                                }],
+          nil] connectTo:OCAProperty(self, calendarName, NSString)];
     }
     return self;
 }
