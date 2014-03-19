@@ -187,9 +187,33 @@
         [OCAProperty(self.design, workingLocaleDesign.calendarName, NSString)
          connectTo:OCAProperty(calendarCell, detailTextLabel.text, NSString)];
         
+        TBXCell *shortDateCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        shortDateCell.textLabel.text = @"Short Date";
+        [OCAProperty(self.design, workingLocaleDesign.shortDate, NSString)
+         connectTo:OCAProperty(shortDateCell, detailTextLabel.text, NSString)];
+        
+        TBXCell *mediumDateCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        mediumDateCell.textLabel.text = @"Medium Date";
+        [OCAProperty(self.design, workingLocaleDesign.mediumDate, NSString)
+         connectTo:OCAProperty(mediumDateCell, detailTextLabel.text, NSString)];
+        
+        TBXCell *longDateCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+        longDateCell.textLabel.text = @"Long Date";
+        longDateCell.textLabel.font = calendarCell.textLabel.font;
+        longDateCell.detailTextLabel.textColor = calendarCell.detailTextLabel.textColor;
+        [OCAProperty(self.design, workingLocaleDesign.longDate, NSString)
+         connectTo:OCAProperty(longDateCell, detailTextLabel.text, NSString)];
+        
+        TBXCell *fullDateCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+        fullDateCell.textLabel.text = @"Full Date";
+        fullDateCell.textLabel.font = calendarCell.textLabel.font;
+        fullDateCell.detailTextLabel.textColor = calendarCell.detailTextLabel.textColor;
+        [OCAProperty(self.design, workingLocaleDesign.fullDate, NSString)
+         connectTo:OCAProperty(fullDateCell, detailTextLabel.text, NSString)];
+        
         TBXSection *calendarSection = [TBXSection sectionWithHeader:@"   Calendar"
                                                             footer:nil
-                                                             cells:calendarCell, nil];
+                                                             cells:calendarCell, shortDateCell, mediumDateCell, longDateCell, fullDateCell, nil];
         [sections addObject:calendarSection];
     }
     self.sections = sections;

@@ -119,6 +119,26 @@
                                 NSNull.null : @"(unknown)",
                                 }],
           nil] connectTo:OCAProperty(self, calendarName, NSString)];
+        
+        OCAProducer *timedCalendarProducer = [[locale transformValues:
+                                     [OCATransformer objectForKey:NSLocaleCalendar],
+                                     nil] dependOn:[OCATimer timerWithInterval:1 owner:self], nil];
+        
+        [[timedCalendarProducer transformValues:
+          [self transformCalendarToDateWithStyle:NSDateFormatterShortStyle],
+          nil] connectTo:OCAProperty(self, shortDate, NSString)];
+        
+        [[timedCalendarProducer transformValues:
+          [self transformCalendarToDateWithStyle:NSDateFormatterMediumStyle],
+          nil] connectTo:OCAProperty(self, mediumDate, NSString)];
+        
+        [[timedCalendarProducer transformValues:
+          [self transformCalendarToDateWithStyle:NSDateFormatterLongStyle],
+          nil] connectTo:OCAProperty(self, longDate, NSString)];
+        
+        [[timedCalendarProducer transformValues:
+          [self transformCalendarToDateWithStyle:NSDateFormatterFullStyle],
+          nil] connectTo:OCAProperty(self, fullDate, NSString)];
     }
     return self;
 }
@@ -154,6 +174,19 @@
                                
                            } reverse:^NSCharacterSet *(NSString *input) {
                                return [NSCharacterSet characterSetWithCharactersInString:input];
+                           }];
+}
+
+
+- (NSValueTransformer *)transformCalendarToDateWithStyle:(NSDateFormatterStyle)style {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = style;
+    formatter.timeStyle = style;
+    return [OCATransformer fromClass:[NSCalendar class] toClass:[NSString class]
+                           asymetric:^NSString *(NSCalendar *input) {
+                               formatter.calendar = input;
+                               formatter.locale = input.locale;
+                               return [formatter stringFromDate:[NSDate date]];
                            }];
 }
 
