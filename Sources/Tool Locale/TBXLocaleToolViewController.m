@@ -197,17 +197,13 @@
         [OCAProperty(self.design, workingLocaleDesign.mediumDate, NSString)
          connectTo:OCAProperty(mediumDateCell, detailTextLabel.text, NSString)];
         
-        TBXCell *longDateCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+        TBXCell *longDateCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         longDateCell.textLabel.text = @"Long Date";
-        longDateCell.textLabel.font = calendarCell.textLabel.font;
-        longDateCell.detailTextLabel.textColor = calendarCell.detailTextLabel.textColor;
         [OCAProperty(self.design, workingLocaleDesign.longDate, NSString)
          connectTo:OCAProperty(longDateCell, detailTextLabel.text, NSString)];
         
-        TBXCell *fullDateCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+        TBXCell *fullDateCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         fullDateCell.textLabel.text = @"Full Date";
-        fullDateCell.textLabel.font = calendarCell.textLabel.font;
-        fullDateCell.detailTextLabel.textColor = calendarCell.detailTextLabel.textColor;
         [OCAProperty(self.design, workingLocaleDesign.fullDate, NSString)
          connectTo:OCAProperty(fullDateCell, detailTextLabel.text, NSString)];
         

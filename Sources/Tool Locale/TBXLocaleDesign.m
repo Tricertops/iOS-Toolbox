@@ -181,7 +181,6 @@
 - (NSValueTransformer *)transformCalendarToDateWithStyle:(NSDateFormatterStyle)style {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateStyle = style;
-    formatter.timeStyle = style;
     return [OCATransformer fromClass:[NSCalendar class] toClass:[NSString class]
                            asymetric:^NSString *(NSCalendar *input) {
                                formatter.calendar = input;
