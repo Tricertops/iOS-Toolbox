@@ -162,8 +162,13 @@
           [OCATransformer map:directionMapping],
           nil] connectTo:OCAProperty(lineDirectionCell, detailTextLabel.text, NSString)];
         
-        TBXCell *exemplarCharactersCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        TBXCell *exemplarCharactersCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
         exemplarCharactersCell.textLabel.text = @"Exemplar Characters";
+        exemplarCharactersCell.textLabel.font = lineDirectionCell.textLabel.font;
+        exemplarCharactersCell.detailTextLabel.textColor = lineDirectionCell.detailTextLabel.textColor;
+        
+        [OCAProperty(self.design, workingLocaleDesign.exemplarCharacters, NSString)
+         connectTo:OCAProperty(exemplarCharactersCell, detailTextLabel.text, NSString)];
         
         TBXSection *writingSection = [TBXSection sectionWithHeader:@"   Writing"
                                                                footer:nil

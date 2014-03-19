@@ -94,7 +94,10 @@
                           }],
           nil] connectTo:OCAProperty(self, characterDirection, NSUInteger)];
         
-        self->_exemplarCharacters = @"ABC"; //TODO: String from Character set
+        [[locale transformValues:
+          [OCATransformer objectForKey:NSLocaleExemplarCharacterSet],
+          [self transformCharacterSetToString],
+          nil] connectTo:OCAProperty(self, exemplarCharacters, NSString)];
     }
     return self;
 }
@@ -106,6 +109,30 @@
                                
                                id value = [input objectForKey:key];
                                return [self.displayLocale displayNameForKey:key value:value];
+                           }];
+}
+
+
+- (NSValueTransformer *)transformCharacterSetToString {
+    return [OCATransformer fromClass:[NSCharacterSet class] toClass:[NSString class]
+                           transform:^NSString *(NSCharacterSet *input) {
+                               
+                               NSMutableString *characters = [[NSMutableString alloc] init];
+                               
+                               for (unichar c = 0; c < USHRT_MAX; c++) {
+                                   if ([input characterIsMember:c]) {
+                                       NSString *s = [NSString stringWithCharacters:&c length:1];
+                                       BOOL isLowercase = [[s lowercaseString] isEqualToString:s];
+                                       if (isLowercase) {
+                                           [characters appendString:s];
+                                       }
+                                   }
+                               }
+                               
+                               return characters;
+                               
+                           } reverse:^NSCharacterSet *(NSString *input) {
+                               return [NSCharacterSet characterSetWithCharactersInString:input];
                            }];
 }
 
