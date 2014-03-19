@@ -117,7 +117,8 @@
         countryCell.textLabel.text = @"Country";
         [[[OCAHub combine:
            OCAProperty(self.design, workingLocaleDesign.countryName, NSString),
-           OCAProperty(self.design, workingLocaleDesign.countryCode, NSString),
+           [OCAProperty(self.design, workingLocaleDesign.countryCode, NSString) transformValues:
+            [OCATransformer replaceNil:@"none"], nil],
            nil] transformValues:
           [OCATransformer formatString:@"%@ (%@)"],
           nil] connectTo:OCAProperty(countryCell, detailTextLabel.text, NSString)];
@@ -132,6 +133,42 @@
                                                                footer:nil
                                                                 cells:languageCell, countryCell, variantCell, nil];
         [sections addObject:componentsSection];
+    }
+    {
+        TBXCell *scriptCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        scriptCell.textLabel.text = @"Script";
+        [[OCAProperty(self.design, workingLocaleDesign.scriptCode, NSString) transformValues:
+          [OCATransformer if:[OCAPredicate isEmpty] then:[OCATransformer replaceWith:@"(none)"] else:nil],
+          nil] connectTo:OCAProperty(scriptCell, detailTextLabel.text, NSString)];
+        
+        NSDictionary *directionMapping = @{
+                                           NSNull.null: @"(unknown)",
+                                           @(NSLocaleLanguageDirectionUnknown): @"(unknown)",
+                                           @(NSLocaleLanguageDirectionLeftToRight): @"→",
+                                           @(NSLocaleLanguageDirectionRightToLeft): @"←",
+                                           @(NSLocaleLanguageDirectionTopToBottom): @"↓",
+                                           @(NSLocaleLanguageDirectionBottomToTop): @"↑",
+                                           };
+        
+        TBXCell *characterDirectionCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        characterDirectionCell.textLabel.text = @"Character Direction";
+        [[OCAProperty(self.design, workingLocaleDesign.characterDirection, NSLocaleLanguageDirection) transformValues:
+          [OCATransformer map:directionMapping],
+          nil] connectTo:OCAProperty(characterDirectionCell, detailTextLabel.text, NSString)];
+        
+        TBXCell *lineDirectionCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        lineDirectionCell.textLabel.text = @"Line Direction";
+        [[OCAProperty(self.design, workingLocaleDesign.lineDirection, NSLocaleLanguageDirection) transformValues:
+          [OCATransformer map:directionMapping],
+          nil] connectTo:OCAProperty(lineDirectionCell, detailTextLabel.text, NSString)];
+        
+        TBXCell *exemplarCharactersCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        exemplarCharactersCell.textLabel.text = @"Exemplar Characters";
+        
+        TBXSection *writingSection = [TBXSection sectionWithHeader:@"   Writing"
+                                                               footer:nil
+                                                                cells:scriptCell, characterDirectionCell, lineDirectionCell, exemplarCharactersCell, nil];
+        [sections addObject:writingSection];
     }
     self.sections = sections;
 }
