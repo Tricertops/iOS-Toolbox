@@ -57,7 +57,7 @@
         
         [[OCAProperty(self.design, titleSymbol, NSString) transformValues:
           [self.class transformStringToTabBarImage],
-          nil] connectTo:OCAProperty(self, tabBarItem.image, UIImage)]; //TODO: Doesn't update, reason unknown.
+          nil] invoke:OCAInvocation(self, updateTabBarImage:OCAPH(UIImage))];
     }
     return self;
 }
@@ -73,6 +73,12 @@
                                [label sizeToFit];
                                return [label snapshot];
                            }];
+}
+
+
+- (void)updateTabBarImage:(UIImage *)image {
+    UITabBarItem *item = [[UITabBarItem alloc] initWithTitle:self.tabBarItem.title image:image tag:0];
+    self.tabBarItem = item; // UIKit only observes .tabBarItem key-path, not tabBarItem.image.
 }
 
 
