@@ -34,6 +34,9 @@
 @property (atomic, readonly, assign) NSLocaleLanguageDirection lineDirection;
 @property (atomic, readonly, assign) NSLocaleLanguageDirection characterDirection;
 @property (atomic, readonly, copy) NSString *exemplarCharacters;
+@property (atomic, readonly, copy) NSString *quotationExample;
+@property (atomic, readonly, copy) NSString *alternateQuotationExample;
+
 
 @property (atomic, readonly, copy) NSString *calendarName;
 @property (atomic, readonly, copy) NSString *shortDate;
@@ -50,11 +53,6 @@
 @property (atomic, readonly, copy) NSString *currencyName;
 @property (atomic, readonly, copy) NSString *currencySymbol;
 @property (atomic, readonly, copy) NSString *currencyExample;
-
-@property (atomic, readonly, copy) NSString *quotationSymbols;
-@property (atomic, readonly, copy) NSString *quotationExample;
-@property (atomic, readonly, copy) NSString *alternateQuotationSymbols;
-@property (atomic, readonly, copy) NSString *alternateQuotationExample;
 
 
 @end

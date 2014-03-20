@@ -173,12 +173,29 @@
         exemplarCharactersCell.textLabel.font = lineDirectionCell.textLabel.font;
         exemplarCharactersCell.detailTextLabel.textColor = lineDirectionCell.detailTextLabel.textColor;
         
+        TBXCell *quotationCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        quotationCell.textLabel.text = @"Quotation";
+        [OCAProperty(self.design, workingLocaleDesign.quotationExample, NSString)
+         connectTo:OCAProperty(quotationCell, detailTextLabel.text, NSString)];
+        
+        TBXCell *altQuotationCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        altQuotationCell.textLabel.text = @"Alternate Quotation";
+        [OCAProperty(self.design, workingLocaleDesign.alternateQuotationExample, NSString)
+         connectTo:OCAProperty(altQuotationCell, detailTextLabel.text, NSString)];
+        
         [OCAProperty(self.design, workingLocaleDesign.exemplarCharacters, NSString)
          connectTo:OCAProperty(exemplarCharactersCell, detailTextLabel.text, NSString)];
         
         TBXSection *writingSection = [TBXSection sectionWithHeader:@"   Writing"
                                                                footer:nil
-                                                                cells:scriptCell, characterDirectionCell, lineDirectionCell, exemplarCharactersCell, nil];
+                                                                cells:
+                                      scriptCell,
+                                      characterDirectionCell,
+                                      lineDirectionCell,
+                                      exemplarCharactersCell,
+                                      quotationCell,
+                                      altQuotationCell,
+                                      nil];
         [sections addObject:writingSection];
     }
     {

@@ -96,8 +96,36 @@
         
         [[locale transformValues:
           [OCATransformer objectForKey:NSLocaleExemplarCharacterSet],
-          [self transformCharacterSetToString],
+          [self transformCharacterSetToStringSorted:YES],
           nil] connectTo:OCAProperty(self, exemplarCharacters, NSString)];
+        
+        
+        OCATransformer *transformLocaleToQuotedString = [OCATransformer sequence:
+                                                         @[
+                                                           [OCATransformer objectForKey:NSLocaleExemplarCharacterSet],
+                                                           [self transformCharacterSetToStringSorted:YES],
+                                                           [OCATransformer substringToIndex:5],
+                                                           ]];
+        
+        [[locale transformValues:
+          [OCATransformer branchArray:@[
+                                        [OCATransformer objectForKey:NSLocaleQuotationBeginDelimiterKey],
+                                        transformLocaleToQuotedString,
+                                        [OCATransformer objectForKey:NSLocaleQuotationEndDelimiterKey],
+                                        ]],
+          [OCATransformer removeNullsFromArray],
+          [OCATransformer joinWithString:@""], // Result: “abc”
+          nil] connectTo:OCAProperty(self, quotationExample, NSString)];
+        
+        [[locale transformValues:
+          [OCATransformer branchArray:@[
+                                        [OCATransformer objectForKey:NSLocaleAlternateQuotationBeginDelimiterKey],
+                                        transformLocaleToQuotedString,
+                                        [OCATransformer objectForKey:NSLocaleAlternateQuotationEndDelimiterKey],
+                                        ]],
+          [OCATransformer removeNullsFromArray],
+          [OCATransformer joinWithString:@""], // Result: ‘abc’
+          nil] connectTo:OCAProperty(self, alternateQuotationExample, NSString)];
         
         
         
@@ -188,15 +216,16 @@
         [[locale transformValues:
           [self transformLocaleToFormattedNumber:@1 style:NSNumberFormatterCurrencyStyle],
           nil] connectTo:OCAProperty(self, currencyExample, NSString)];
-        
     }
     return self;
 }
 
 
 - (NSValueTransformer *)transformLocaleToDisplayNameForKey:(NSString *)key {
+    OCAWeakify(self);
     return [OCATransformer fromClass:[NSLocale class] toClass:[NSString class]
                            asymetric:^NSString *(NSLocale *input) {
+                               OCAStrongify(self);
                                
                                id value = [input objectForKey:key];
                                return [self.displayLocale displayNameForKey:key value:value];
@@ -204,23 +233,35 @@
 }
 
 
-- (NSValueTransformer *)transformCharacterSetToString {
+- (NSValueTransformer *)transformCharacterSetToStringSorted:(BOOL)sorted {
+    OCAWeakify(self);
     return [OCATransformer fromClass:[NSCharacterSet class] toClass:[NSString class]
                            transform:^NSString *(NSCharacterSet *input) {
+                               OCAStrongify(self);
                                
-                               NSMutableString *characters = [[NSMutableString alloc] init];
+                               NSMutableArray *characters = [[NSMutableArray alloc] init];
                                
                                for (unichar c = 0; c < USHRT_MAX; c++) {
                                    if ([input characterIsMember:c]) {
                                        NSString *s = [NSString stringWithCharacters:&c length:1];
                                        BOOL isLowercase = [[s lowercaseString] isEqualToString:s];
                                        if (isLowercase) {
-                                           [characters appendString:s];
+                                           [characters addObject:s];
                                        }
                                    }
                                }
                                
-                               return characters;
+                               if (sorted) {
+                                   [characters sortUsingComparator:^NSComparisonResult(NSString *stringA, NSString *stringB) {
+                                       NSComparisonResult result =  [stringA compare:stringB
+                                                                             options:(NSCaseInsensitiveSearch | NSForcedOrderingSearch)
+                                                                               range:NSMakeRange(0, 1)
+                                                                              locale:self.locale];
+                                       return result;
+                                   }];
+                               }
+                               
+                               return [characters join:@""];
                                
                            } reverse:^NSCharacterSet *(NSString *input) {
                                return [NSCharacterSet characterSetWithCharactersInString:input];
