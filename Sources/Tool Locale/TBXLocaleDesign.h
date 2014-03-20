@@ -44,6 +44,7 @@
 @property (atomic, readonly, copy) NSString *measurementSystem;
 @property (atomic, readonly, copy) NSString *decimalSeparator;
 @property (atomic, readonly, copy) NSString *groupingSeparator;
+@property (atomic, readonly, copy) NSString *numberExample;
 
 @property (atomic, readonly, copy) NSString *currencyCode;
 @property (atomic, readonly, copy) NSString *currencyName;

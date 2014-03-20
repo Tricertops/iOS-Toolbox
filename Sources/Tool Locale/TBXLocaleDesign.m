@@ -139,6 +139,36 @@
         [[timedCalendarProducer transformValues:
           [self transformCalendarToDateWithStyle:NSDateFormatterFullStyle],
           nil] connectTo:OCAProperty(self, fullDate, NSString)];
+        
+        
+        
+        [[locale transformValues:
+          [OCATransformer objectForKey:NSLocaleMeasurementSystem],
+          nil] connectTo:OCAProperty(self, measurementSystem, NSString)];
+        
+        [[locale transformValues:
+          [OCATransformer objectForKey:NSLocaleDecimalSeparator],
+          [OCATransformer map:@{
+                                @".": @"Dot",
+                                @",": @"Comma",
+                                }],
+          nil] connectTo:OCAProperty(self, decimalSeparator, NSString)];
+        
+        [[locale transformValues:
+          [OCATransformer objectForKey:NSLocaleGroupingSeparator],
+          [OCATransformer map:@{
+                                @".": @"Dot",
+                                @",": @"Comma",
+                                @" ": @"Space",
+                                @"'": @"Apostrophe",
+                                NSNull.null: @"None",
+                                }],
+          nil] connectTo:OCAProperty(self, groupingSeparator, NSString)];
+        
+        [[locale transformValues:
+          [self transformLocaleToFormattedNumber:@12345.6789 style:NSNumberFormatterDecimalStyle],
+          nil] connectTo:OCAProperty(self, numberExample, NSString)];
+        
     }
     return self;
 }
@@ -186,6 +216,18 @@
                                formatter.calendar = input;
                                formatter.locale = input.locale;
                                return [formatter stringFromDate:[NSDate date]];
+                           }];
+}
+
+
+- (NSValueTransformer *)transformLocaleToFormattedNumber:(NSNumber *)number style:(NSNumberFormatterStyle)style {
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = style;
+    formatter.maximumFractionDigits = 5;
+    return [OCATransformer fromClass:[NSLocale class] toClass:[NSString class]
+                           asymetric:^NSString *(NSLocale *input) {
+                               formatter.locale = input;
+                               return [formatter stringFromNumber:number];
                            }];
 }
 

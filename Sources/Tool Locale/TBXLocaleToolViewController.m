@@ -212,6 +212,32 @@
                                                              cells:calendarCell, shortDateCell, mediumDateCell, longDateCell, fullDateCell, nil];
         [sections addObject:calendarSection];
     }
+    {
+        TBXCell *measurementCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        measurementCell.textLabel.text = @"Measurement System";
+        [OCAProperty(self.design, workingLocaleDesign.measurementSystem, NSString)
+         connectTo:OCAProperty(measurementCell, detailTextLabel.text, NSString)];
+        
+        TBXCell *decimalSeparatorCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        decimalSeparatorCell.textLabel.text = @"Decimal Separator";
+        [OCAProperty(self.design, workingLocaleDesign.decimalSeparator, NSString)
+         connectTo:OCAProperty(decimalSeparatorCell, detailTextLabel.text, NSString)];
+        
+        TBXCell *groupingSeparatorCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        groupingSeparatorCell.textLabel.text = @"Grouping Separator";
+        [OCAProperty(self.design, workingLocaleDesign.groupingSeparator, NSString)
+         connectTo:OCAProperty(groupingSeparatorCell, detailTextLabel.text, NSString)];
+        
+        TBXCell *numberExampleCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        numberExampleCell.textLabel.text = @"Number Example";
+        [OCAProperty(self.design, workingLocaleDesign.numberExample, NSString)
+         connectTo:OCAProperty(numberExampleCell, detailTextLabel.text, NSString)];
+        
+        TBXSection *numbersSection = [TBXSection sectionWithHeader:@"   Numbers"
+                                                             footer:nil
+                                                              cells:measurementCell, decimalSeparatorCell, groupingSeparatorCell, numberExampleCell, nil];
+        [sections addObject:numbersSection];
+    }
     self.sections = sections;
 }
 
