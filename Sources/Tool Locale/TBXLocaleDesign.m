@@ -148,6 +148,12 @@
                                 }],
           nil] connectTo:OCAProperty(self, calendarName, NSString)];
         
+        [[localeForDisplay transformValues:
+          [OCATransformer objectForKey:NSLocaleCalendar],
+          [OCATransformer access:OCAKeyPath(NSCalendar, firstWeekday, NSUInteger)],
+          [self transformWeekdayIndexToName], // Uses .displayLocale
+          nil] connectTo:OCAProperty(self, firstWeekday, NSString)];
+        
         OCAProducer *timedCalendarProducer = [[locale transformValues:
                                      [OCATransformer objectForKey:NSLocaleCalendar],
                                      nil] dependOn:[OCATimer timerWithInterval:1 owner:self], nil];
@@ -289,6 +295,20 @@
                            asymetric:^NSString *(NSLocale *input) {
                                formatter.locale = input;
                                return [formatter stringFromNumber:number];
+                           }];
+}
+
+
+- (NSValueTransformer *)transformWeekdayIndexToName {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    OCAWeakify(self);
+    return [OCATransformer fromClass:[NSNumber class] toClass:[NSString class]
+                           asymetric:^NSString *(NSNumber *input) {
+                               OCAStrongify(self);
+                               
+                               formatter.locale = self.displayLocale;
+                               NSInteger index = input.integerValue - 1;
+                               return [formatter.standaloneWeekdaySymbols objectAtIndex:index];
                            }];
 }
 

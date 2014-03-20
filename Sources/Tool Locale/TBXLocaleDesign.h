@@ -39,6 +39,7 @@
 
 
 @property (atomic, readonly, copy) NSString *calendarName;
+@property (atomic, readonly, copy) NSString *firstWeekday;
 @property (atomic, readonly, copy) NSString *shortDate;
 @property (atomic, readonly, copy) NSString *mediumDate;
 @property (atomic, readonly, copy) NSString *longDate;

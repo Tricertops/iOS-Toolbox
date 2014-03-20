@@ -204,6 +204,11 @@
         [OCAProperty(self.design, workingLocaleDesign.calendarName, NSString)
          connectTo:OCAProperty(calendarCell, detailTextLabel.text, NSString)];
         
+        TBXCell *firstWeekdayCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        firstWeekdayCell.textLabel.text = @"First Weekday";
+        [OCAProperty(self.design, workingLocaleDesign.firstWeekday, NSString)
+         connectTo:OCAProperty(firstWeekdayCell, detailTextLabel.text, NSString)];
+        
         TBXCell *shortDateCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         shortDateCell.textLabel.text = @"Short Date";
         [OCAProperty(self.design, workingLocaleDesign.shortDate, NSString)
@@ -226,7 +231,14 @@
         
         TBXSection *calendarSection = [TBXSection sectionWithHeader:@"   Calendar"
                                                             footer:nil
-                                                             cells:calendarCell, shortDateCell, mediumDateCell, longDateCell, fullDateCell, nil];
+                                                             cells:
+                                       calendarCell,
+                                       firstWeekdayCell,
+                                       shortDateCell,
+                                       mediumDateCell,
+                                       longDateCell,
+                                       fullDateCell,
+                                       nil];
         [sections addObject:calendarSection];
     }
     {
