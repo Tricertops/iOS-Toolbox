@@ -182,21 +182,17 @@
         
         [[locale transformValues:
           [OCATransformer objectForKey:NSLocaleDecimalSeparator],
-          [OCATransformer map:@{
-                                @".": @"Dot",
-                                @",": @"Comma",
-                                }],
           nil] connectTo:OCAProperty(self, decimalSeparator, NSString)];
         
         [[locale transformValues:
           [OCATransformer objectForKey:NSLocaleGroupingSeparator],
-          [OCATransformer map:@{
-                                @".": @"Dot",
-                                @",": @"Comma",
-                                @" ": @"Space",
-                                @"'": @"Apostrophe",
-                                NSNull.null: @"None",
-                                }],
+          [OCATransformer if:[OCAPredicate isNil]
+           then:[OCATransformer replaceWith:@"None"]
+           else:[OCATransformer sequence:@[
+                                           [OCATransformer trimWhitespace],
+                                           [OCATransformer if:[OCAPredicate isEmpty] then:[OCATransformer replaceWith:@"Space"] else:nil],
+                                           ]]
+           ],
           nil] connectTo:OCAProperty(self, groupingSeparator, NSString)];
         
         [[locale transformValues:
