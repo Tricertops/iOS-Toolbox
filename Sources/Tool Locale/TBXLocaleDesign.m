@@ -169,6 +169,26 @@
           [self transformLocaleToFormattedNumber:@12345.6789 style:NSNumberFormatterDecimalStyle],
           nil] connectTo:OCAProperty(self, numberExample, NSString)];
         
+        
+        
+        [[locale transformValues:
+          [OCATransformer objectForKey:NSLocaleCurrencyCode],
+          [OCATransformer replaceNil:@"(none)"],
+          nil] connectTo:OCAProperty(self, currencyCode, NSString)];
+        
+        [[localeForDisplay transformValues:
+          [self transformLocaleToDisplayNameForKey:NSLocaleCurrencyCode],
+          [OCATransformer replaceNil:@"(none)"],
+          nil] connectTo:OCAProperty(self, currencyName, NSString)];
+        
+        [[locale transformValues:
+          [OCATransformer objectForKey:NSLocaleCurrencySymbol],
+          nil] connectTo:OCAProperty(self, currencySymbol, NSString)];
+        
+        [[locale transformValues:
+          [self transformLocaleToFormattedNumber:@1 style:NSNumberFormatterCurrencyStyle],
+          nil] connectTo:OCAProperty(self, currencyExample, NSString)];
+        
     }
     return self;
 }
