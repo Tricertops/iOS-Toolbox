@@ -96,14 +96,14 @@
         
         [[locale transformValues:
           [OCATransformer objectForKey:NSLocaleExemplarCharacterSet],
-          [self transformCharacterSetToStringSorted:YES],
+          [self transformCharacterSetToStringWithComposed:YES],
           nil] connectTo:OCAProperty(self, exemplarCharacters, NSString)];
         
         
         OCATransformer *transformLocaleToQuotedString = [OCATransformer sequence:
                                                          @[
                                                            [OCATransformer objectForKey:NSLocaleExemplarCharacterSet],
-                                                           [self transformCharacterSetToStringSorted:YES],
+                                                           [self transformCharacterSetToStringWithComposed:NO],
                                                            [OCATransformer substringToIndex:5],
                                                            ]];
         
@@ -235,7 +235,7 @@
 }
 
 
-- (NSValueTransformer *)transformCharacterSetToStringSorted:(BOOL)sorted {
+- (NSValueTransformer *)transformCharacterSetToStringWithComposed:(BOOL)includeComposed {
     OCAWeakify(self);
     return [OCATransformer fromClass:[NSCharacterSet class] toClass:[NSString class]
                            transform:^NSString *(NSCharacterSet *input) {
@@ -245,6 +245,12 @@
                                
                                for (unichar c = 0; c < USHRT_MAX; c++) {
                                    if ([input characterIsMember:c]) {
+                                       if ( ! includeComposed) {
+                                           if ([[NSCharacterSet decomposableCharacterSet] characterIsMember:c]) {
+                                               continue;
+                                           }
+                                       }
+                                       
                                        NSString *s = [NSString stringWithCharacters:&c length:1];
                                        BOOL isLowercase = [[s lowercaseString] isEqualToString:s];
                                        if (isLowercase) {
@@ -253,7 +259,7 @@
                                    }
                                }
                                
-                               if (sorted) {
+                               if (includeComposed) {
                                    [characters sortUsingComparator:^NSComparisonResult(NSString *stringA, NSString *stringB) {
                                        NSComparisonResult result =  [stringA compare:stringB
                                                                              options:(NSCaseInsensitiveSearch | NSForcedOrderingSearch)
