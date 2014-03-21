@@ -259,15 +259,13 @@
                                    }
                                }
                                
-                               if (includeComposed) {
-                                   [characters sortUsingComparator:^NSComparisonResult(NSString *stringA, NSString *stringB) {
-                                       NSComparisonResult result =  [stringA compare:stringB
-                                                                             options:(NSCaseInsensitiveSearch | NSForcedOrderingSearch)
-                                                                               range:NSMakeRange(0, 1)
-                                                                              locale:self.locale];
-                                       return result;
-                                   }];
-                               }
+                               [characters sortUsingComparator:^NSComparisonResult(NSString *stringA, NSString *stringB) {
+                                   NSComparisonResult result =  [stringA compare:stringB
+                                                                         options:(NSCaseInsensitiveSearch | NSForcedOrderingSearch)
+                                                                           range:NSMakeRange(0, 1)
+                                                                          locale:self.locale];
+                                   return result;
+                               }];
                                
                                return [characters join:@""];
                                
