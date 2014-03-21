@@ -186,7 +186,7 @@
         [OCAProperty(self.design, workingLocaleDesign.exemplarCharacters, NSString)
          connectTo:OCAProperty(exemplarCharactersCell, detailTextLabel.text, NSString)];
         
-        TBXSection *writingSection = [TBXSection sectionWithHeader:@"   Writing"
+        TBXSection *writingSection = [TBXSection sectionWithHeader:@"Writing"
                                                                footer:nil
                                                                 cells:
                                       scriptCell,
@@ -229,7 +229,7 @@
         [OCAProperty(self.design, workingLocaleDesign.fullDate, NSString)
          connectTo:OCAProperty(fullDateCell, detailTextLabel.text, NSString)];
         
-        TBXSection *calendarSection = [TBXSection sectionWithHeader:@"   Calendar"
+        TBXSection *calendarSection = [TBXSection sectionWithHeader:@"Calendar"
                                                             footer:nil
                                                              cells:
                                        calendarCell,
@@ -247,51 +247,36 @@
         [OCAProperty(self.design, workingLocaleDesign.measurementSystem, NSString)
          connectTo:OCAProperty(measurementCell, detailTextLabel.text, NSString)];
         
-        TBXCell *decimalSeparatorCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        decimalSeparatorCell.textLabel.text = @"Decimal Separator";
-        [OCAProperty(self.design, workingLocaleDesign.decimalSeparator, NSString)
-         connectTo:OCAProperty(decimalSeparatorCell, detailTextLabel.text, NSString)];
-        
-        TBXCell *groupingSeparatorCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        groupingSeparatorCell.textLabel.text = @"Grouping Separator";
-        [OCAProperty(self.design, workingLocaleDesign.groupingSeparator, NSString)
-         connectTo:OCAProperty(groupingSeparatorCell, detailTextLabel.text, NSString)];
-        
         TBXCell *numberExampleCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        numberExampleCell.textLabel.text = @"Number Example";
+        numberExampleCell.textLabel.text = @"Number Format";
         [OCAProperty(self.design, workingLocaleDesign.numberExample, NSString)
          connectTo:OCAProperty(numberExampleCell, detailTextLabel.text, NSString)];
         
-        TBXSection *numbersSection = [TBXSection sectionWithHeader:@"   Numbers"
-                                                             footer:nil
-                                                              cells:measurementCell, decimalSeparatorCell, groupingSeparatorCell, numberExampleCell, nil];
-        [sections addObject:numbersSection];
-    }
-    {
-        TBXCell *currencyCodeCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        currencyCodeCell.textLabel.text = @"ISO Code";
-        [OCAProperty(self.design, workingLocaleDesign.currencyCode, NSString)
-         connectTo:OCAProperty(currencyCodeCell, detailTextLabel.text, NSString)];
-        
         TBXCell *currencyNameCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        currencyNameCell.textLabel.text = @"Name";
+        currencyNameCell.textLabel.text = @"Currency";
         [OCAProperty(self.design, workingLocaleDesign.currencyName, NSString)
          connectTo:OCAProperty(currencyNameCell, detailTextLabel.text, NSString)];
         
-        TBXCell *currencySymbolCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        currencySymbolCell.textLabel.text = @"Symbol";
-        [OCAProperty(self.design, workingLocaleDesign.currencySymbol, NSString)
-         connectTo:OCAProperty(currencySymbolCell, detailTextLabel.text, NSString)];
+        TBXCell *currencyCodeCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        currencyCodeCell.textLabel.text = @"Currency Code";
+        [OCAProperty(self.design, workingLocaleDesign.currencyCode, NSString)
+         connectTo:OCAProperty(currencyCodeCell, detailTextLabel.text, NSString)];
         
         TBXCell *currencyExampleCell = [[TBXCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        currencyExampleCell.textLabel.text = @"Example";
+        currencyExampleCell.textLabel.text = @"Currency Format";
         [OCAProperty(self.design, workingLocaleDesign.currencyExample, NSString)
          connectTo:OCAProperty(currencyExampleCell, detailTextLabel.text, NSString)];
         
-        TBXSection *currencySection = [TBXSection sectionWithHeader:@"   Currency"
-                                                            footer:nil
-                                                             cells:currencyCodeCell, currencyNameCell, currencySymbolCell, currencyExampleCell, nil];
-        [sections addObject:currencySection];
+        TBXSection *numbersAndCurrencySection = [TBXSection sectionWithHeader:@"Numbers & Currency"
+                                                                       footer:nil
+                                                                        cells:
+                                                 measurementCell,
+                                                 numberExampleCell,
+                                                 currencyNameCell,
+                                                 currencyCodeCell,
+                                                 currencyExampleCell,
+                                                 nil];
+        [sections addObject:numbersAndCurrencySection];
     }
     self.sections = sections;
 }
